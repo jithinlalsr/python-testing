@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'python test_calc.py'
+                powershell 'python test_calc.py'
             }
         }
     }
