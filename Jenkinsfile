@@ -1,4 +1,9 @@
 pipeline {
+	    environment { 
+        registry = "jithinlalsr/docker_learn" 
+        registryCredential = 'mohananjuN11!' 
+        dockerImage = '' 
+ }
     agent any
 
     stages {
@@ -14,5 +19,14 @@ pipeline {
                   }    
               }
         }
+	stage('Push') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+               } 
+            }
+	} 
     }
 }
