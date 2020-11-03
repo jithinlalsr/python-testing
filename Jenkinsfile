@@ -1,5 +1,5 @@
 pipeline {
-	    environment { 
+	environment { 
         registry = "jithinlalsr/docker_learn" 
         registryCredential = 'dockerhub' 
         dockerImage = '' 
