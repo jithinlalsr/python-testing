@@ -21,11 +21,14 @@ pipeline {
         }
 	stage('Push') { 
             steps { 
+              withCredentials([usernamePassword( registryCredential, usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
                 script { 
+		    bat "docker login -u $USER -p $PASSWORD ${registry}"	
                     docker.withRegistry( '', registryCredential ) { 
                         dockerImage.push() 
                     }
-               } 
+                 } 
+	      }	      
             }
 	} 
     }
