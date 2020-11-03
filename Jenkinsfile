@@ -1,7 +1,7 @@
 pipeline {
 	    environment { 
         registry = "jithinlalsr/docker_learn" 
-        registryCredential = 'mohananjuN11!' 
+        registryCredential = 'dockerhub' 
         dockerImage = '' 
  }
     agent any
@@ -21,12 +21,13 @@ pipeline {
         }
 	stage('Push') { 
             steps { 
-                script { 
-                    docker.withRegistry( '', registryCredential ) { 
+              script { 
+		     docker.withRegistry( '', registryCredential ) { 
                         dockerImage.push() 
                     }
-               } 
-            }
+                 } 
+	         
+           }
 	} 
     }
 }
