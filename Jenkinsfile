@@ -23,12 +23,14 @@ pipeline {
        stage('Push') {
              steps { 
                  withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                       docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
+		script {
+                       docker.withRegistry('', 'dockerhub') {
                                  sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                                  dockerImage.push()
-		                   }   
-                           }
-                      }           
+		                       }   
+		                } 
+		           }
+                        }           
                     } 
             }
          }	
