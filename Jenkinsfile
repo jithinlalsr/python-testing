@@ -21,7 +21,7 @@ pipeline {
 
     stage('Push') {
              withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                   docker.withRegistry('', 'dockerhub') {
+                   docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
                        sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                        dockerImage.push()
                       } 
