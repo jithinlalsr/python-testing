@@ -1,8 +1,5 @@
 pipeline {
-	    environment { 
-        registry = "jithinlalsr/docker_learn" 
-        dockerImage = '' 
- }
+	    
     agent any
 
     stages {
