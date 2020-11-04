@@ -19,7 +19,7 @@ pipeline {
                      }    
                  }
               }     
-// Push your image 
+// Push your image to docker
        stage('Push') {
              steps { 
 		script {
