@@ -19,7 +19,7 @@ pipeline {
                   }    
               }
         }
-// Push your image now
+// Push your image now to docker
     stage('Push') {
             steps { 
                  withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
@@ -31,5 +31,9 @@ pipeline {
         }
      }
 }
+<<<<<<< HEAD
 }
 }
+=======
+}	
+>>>>>>> b5b8463f35f65bf647f6ee6ee0d9a27ac5cf97b2
