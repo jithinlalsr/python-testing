@@ -2,8 +2,7 @@ pipeline {
     environment {
     registry = "jithinlalsr/docker_learn"
     registryCredential = 'dockerhub'
-    dockerImage = ''
-  }   
+      }   
     agent any
 
     stages {
@@ -17,8 +16,7 @@ pipeline {
               script {
                  sh 'docker build -t "${GIT_COMMIT}" .'
                  sh 'docker tag "${GIT_COMMIT}:latest" "${registry}:latest"'
-                 dockerImage = "${registry}:latest"
-                     }    
+                                      }    
                  }
               }     
 // Push your image to dockers
@@ -26,7 +24,7 @@ pipeline {
              steps { 
 		script {
                        docker.withRegistry('', 'dockerhub') {
-                                 dockerImage.push()
+                                 sh 'docker push "${registry}:latest"'
 		                       }   
 		         } 
 	               }          
