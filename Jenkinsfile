@@ -1,7 +1,6 @@
 pipeline {
 	    environment { 
         registry = "jithinlalsr/docker_learn" 
-        registryCredential = 'dockerhub' 
         dockerImage = '' 
  }
     agent any
@@ -19,15 +18,12 @@ pipeline {
                   }    
               }
         }
-	stage('Push') { 
-            steps { 
-              script { 
-		     docker.withRegistry( '', registryCredential ) { 
-                        dockerImage.push() 
-                    }
-                 } 
-	         
-           }
-	} 
-    }
+
+    stage('Push') {
+             withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                   docker.withRegistry('', 'dockerhub') {
+                       sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                       dockerImage.push()
+                      } 
+        }
 }
