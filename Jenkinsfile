@@ -15,8 +15,8 @@ pipeline {
        stage('Build') {
             steps{
               script {
-                 sh docker build "${GIT_COMMIT}"
-                 sh docker tag "${GIT_COMMIT}:latest" "${registry}:latest"
+                 sh 'docker build "${GIT_COMMIT}"'
+                 sh 'docker tag "${GIT_COMMIT}:latest" "${registry}:latest"'
                  dockerImage = "${registry}:latest"
                      }    
                  }
