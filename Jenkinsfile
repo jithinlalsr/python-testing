@@ -1,4 +1,9 @@
 pipeline {
+    environment {
+    registry = "https://registry.hub.docker.com/"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }   
     agent any
 
     stages {
@@ -16,11 +21,15 @@ pipeline {
         }
 // Push your image now
     stage('Push') {
-             withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            steps { 
+                 withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
+            script    {
                    docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
                        sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                        dockerImage.push()
 		   }
         }
      }
+}
+}
 }
