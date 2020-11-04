@@ -22,15 +22,12 @@ pipeline {
 // Push your image 
        stage('Push') {
              steps { 
-                 withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 		script {
                        docker.withRegistry('', 'dockerhub') {
-                                 sh "docker login -u ${USERNAME} -p ${PASSWORD} docker.io"
                                  dockerImage.push()
 		                       }   
-		                } 
-		           }
-                        }           
+		         } 
+	               }          
                     } 
             }
          }	
