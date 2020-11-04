@@ -14,7 +14,7 @@ pipeline {
                   }    
               }
         }
-// Push your image now
+// Push your image now to docker
     stage('Push') {
              withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                    docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
