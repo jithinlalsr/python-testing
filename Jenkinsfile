@@ -1,6 +1,6 @@
 pipeline {
     environment {
-    registry = "https://registry.hub.docker.com/"
+    registry = "jithinlalsr/docker_learn"
     registryCredential = 'dockerhub'
     dockerImage = ''
   }   
@@ -25,7 +25,7 @@ pipeline {
                  withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 		script {
                        docker.withRegistry('', 'dockerhub') {
-                                 sh "docker login -u ${USERNAME} -p ${PASSWORD}"
+                                 sh "docker login -u ${USERNAME} -p ${PASSWORD} docker.io"
                                  dockerImage.push()
 		                       }   
 		                } 
