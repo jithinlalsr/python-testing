@@ -24,6 +24,6 @@ pipeline {
                    docker.withRegistry('https://registry.hub.docker.com/', 'dockerhub') {
                        sh "docker login -u ${USERNAME} -p ${PASSWORD}"
                        dockerImage.push()
-                      } 
+		   }
         }
 }
